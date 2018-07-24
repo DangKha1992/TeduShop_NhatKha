@@ -9,7 +9,7 @@ namespace TeduShop.Model.Models
         [Key]
         public int ProductID { set; get; }
 
-        [Required]
+        [Key]
         [MaxLength(50)]
         [Column(TypeName = "varchar")]
         public int TagID { set; get; }
