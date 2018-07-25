@@ -7,8 +7,9 @@ namespace TeduShop.Model.Models
     [Table("Tags")]
     public class Tag
     {
-        [Key]
         [MaxLength(50)]
+        [Key]
+        [Column(TypeName ="varchar")]
         public string ID { set; get; }
 
         [Required]

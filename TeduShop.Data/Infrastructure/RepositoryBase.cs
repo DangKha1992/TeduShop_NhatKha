@@ -6,7 +6,7 @@ using System.Linq.Expressions;
 
 namespace TeduShop.Data.Infrastructure
 {
-    public abstract class RepositoryBase<T> where T : class
+    public abstract class RepositoryBase<T> : IRepository<T> where T : class
     {
         #region Properties
 
@@ -144,6 +144,31 @@ namespace TeduShop.Data.Infrastructure
         public bool CheckContains(Expression<Func<T, bool>> predicate)
         {
             return dataContext.Set<T>().Count<T>(predicate) > 0;
+        }
+
+        void IRepository<T>.Add(T entity)
+        {
+            throw new NotImplementedException();
+        }
+
+        void IRepository<T>.Delete(T entity)
+        {
+            throw new NotImplementedException();
+        }
+
+        IQueryable<T> IRepository<T>.GetAll(string[] includes)
+        {
+            throw new NotImplementedException();
+        }
+
+        IQueryable<T> IRepository<T>.GetMulti(Expression<Func<T, bool>> predicate, string[] includes)
+        {
+            throw new NotImplementedException();
+        }
+
+        IQueryable<T> IRepository<T>.GetMultiPaging(Expression<Func<T, bool>> filter, out int total, int index, int size, string[] includes)
+        {
+            throw new NotImplementedException();
         }
 
         #endregion Implementation
