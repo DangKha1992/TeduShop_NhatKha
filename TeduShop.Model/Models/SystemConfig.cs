@@ -7,12 +7,11 @@ namespace TeduShop.Model.Models
     public class SystemConfig
     {
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int ID { set; get; }
 
         [Required]
-        [MaxLength(50)]
         [Column(TypeName = "varchar")]
+        [MaxLength(50)]
         public string Code { set; get; }
 
         [MaxLength(50)]

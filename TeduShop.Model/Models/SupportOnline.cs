@@ -14,23 +14,21 @@ namespace TeduShop.Model.Models
         [MaxLength(50)]
         public string Name { set; get; }
 
-        [Required]
         [MaxLength(50)]
         public string Department { set; get; }
 
-        [Required]
         [MaxLength(50)]
         public string Skype { set; get; }
 
-        [Required]
         [MaxLength(50)]
         public string Mobile { set; get; }
 
-        [Required]
         [MaxLength(50)]
         public string Email { set; get; }
 
-        [Required]
+        [MaxLength(50)]
+        public string Yahoo { set; get; }
+
         [MaxLength(50)]
         public string Facebook { set; get; }
 
