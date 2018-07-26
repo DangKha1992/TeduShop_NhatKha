@@ -3,7 +3,7 @@ namespace TeduShop.Data.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class InitailDB : DbMigration
+    public partial class InitialDB : DbMigration
     {
         public override void Up()
         {
@@ -48,6 +48,7 @@ namespace TeduShop.Data.Migrations
                         OrderID = c.Int(nullable: false),
                         ProductID = c.Int(nullable: false),
                         Quantity = c.Int(nullable: false),
+                        Price = c.Decimal(nullable: false, precision: 18, scale: 2),
                     })
                 .PrimaryKey(t => new { t.OrderID, t.ProductID })
                 .ForeignKey("dbo.Orders", t => t.OrderID, cascadeDelete: true)
@@ -65,11 +66,12 @@ namespace TeduShop.Data.Migrations
                         CustomerEmail = c.String(nullable: false, maxLength: 256),
                         CustomerMobile = c.String(nullable: false, maxLength: 50),
                         CustomerMessage = c.String(nullable: false, maxLength: 256),
-                        CreateDate = c.DateTime(),
-                        CreateBy = c.String(),
                         PaymentMethod = c.String(maxLength: 256),
-                        PaymentStatus = c.String(maxLength: 50),
+                        CreatedDate = c.DateTime(),
+                        CreatedBy = c.String(),
+                        PaymentStatus = c.String(),
                         Status = c.Boolean(nullable: false),
+                        CustomerId = c.String(maxLength: 128),
                     })
                 .PrimaryKey(t => t.ID);
             
@@ -86,11 +88,14 @@ namespace TeduShop.Data.Migrations
                         Price = c.Decimal(nullable: false, precision: 18, scale: 2),
                         PromotionPrice = c.Decimal(precision: 18, scale: 2),
                         Warranty = c.Int(),
-                        Decription = c.String(maxLength: 500),
+                        Description = c.String(maxLength: 500),
                         Content = c.String(),
                         HomeFlag = c.Boolean(),
                         HotFlag = c.Boolean(),
                         ViewCount = c.Int(),
+                        Tags = c.String(),
+                        Quantity = c.Int(nullable: false),
+                        OriginalPrice = c.Decimal(nullable: false, precision: 18, scale: 2),
                         CreatedDate = c.DateTime(),
                         CreatedBy = c.String(maxLength: 256),
                         UpdatedDate = c.DateTime(),
@@ -110,10 +115,10 @@ namespace TeduShop.Data.Migrations
                         ID = c.Int(nullable: false, identity: true),
                         Name = c.String(nullable: false, maxLength: 256),
                         Alias = c.String(nullable: false, maxLength: 256),
-                        Decription = c.String(maxLength: 500),
+                        Description = c.String(maxLength: 500),
                         ParentID = c.Int(),
                         DisplayOrder = c.Int(),
-                        Image = c.String(maxLength: 500),
+                        Image = c.String(maxLength: 256),
                         HomeFlag = c.Boolean(),
                         CreatedDate = c.DateTime(),
                         CreatedBy = c.String(maxLength: 256),
@@ -150,10 +155,10 @@ namespace TeduShop.Data.Migrations
                         ID = c.Int(nullable: false, identity: true),
                         Name = c.String(nullable: false, maxLength: 256),
                         Alias = c.String(nullable: false, maxLength: 256, unicode: false),
-                        Decription = c.String(maxLength: 500),
+                        Description = c.String(maxLength: 500),
                         ParentID = c.Int(),
                         DisplayOrder = c.Int(),
-                        Image = c.String(maxLength: 500),
+                        Image = c.String(maxLength: 256),
                         HomeFlag = c.Boolean(),
                         CreatedDate = c.DateTime(),
                         CreatedBy = c.String(maxLength: 256),
@@ -174,7 +179,7 @@ namespace TeduShop.Data.Migrations
                         Alias = c.String(nullable: false, maxLength: 256, unicode: false),
                         CategoryID = c.Int(nullable: false),
                         Image = c.String(maxLength: 256),
-                        Decription = c.String(maxLength: 500),
+                        Description = c.String(maxLength: 500),
                         Content = c.String(),
                         HomeFlag = c.Boolean(),
                         HotFlag = c.Boolean(),
@@ -233,11 +238,12 @@ namespace TeduShop.Data.Migrations
                     {
                         ID = c.Int(nullable: false, identity: true),
                         Name = c.String(nullable: false, maxLength: 256),
-                        Decription = c.String(maxLength: 256),
+                        Description = c.String(maxLength: 256),
                         Image = c.String(maxLength: 256),
-                        URL = c.String(maxLength: 256),
+                        Url = c.String(maxLength: 256),
                         DisplayOrder = c.Int(),
                         Status = c.Boolean(nullable: false),
+                        Content = c.String(),
                     })
                 .PrimaryKey(t => t.ID);
             
@@ -247,11 +253,12 @@ namespace TeduShop.Data.Migrations
                     {
                         ID = c.Int(nullable: false, identity: true),
                         Name = c.String(nullable: false, maxLength: 50),
-                        Department = c.String(nullable: false, maxLength: 50),
-                        Skype = c.String(nullable: false, maxLength: 50),
-                        Mobile = c.String(nullable: false, maxLength: 50),
-                        Email = c.String(nullable: false, maxLength: 50),
-                        Facebook = c.String(nullable: false, maxLength: 50),
+                        Department = c.String(maxLength: 50),
+                        Skype = c.String(maxLength: 50),
+                        Mobile = c.String(maxLength: 50),
+                        Email = c.String(maxLength: 50),
+                        Yahoo = c.String(maxLength: 50),
+                        Facebook = c.String(maxLength: 50),
                         Status = c.Boolean(nullable: false),
                         DisplayOrder = c.Int(),
                     })
@@ -272,11 +279,11 @@ namespace TeduShop.Data.Migrations
                 "dbo.VisitorStatistics",
                 c => new
                     {
-                        id = c.Guid(nullable: false, identity: true),
+                        ID = c.Guid(nullable: false),
                         VisitedDate = c.DateTime(nullable: false),
                         IPAddress = c.String(maxLength: 50),
                     })
-                .PrimaryKey(t => t.id);
+                .PrimaryKey(t => t.ID);
             
         }
         
